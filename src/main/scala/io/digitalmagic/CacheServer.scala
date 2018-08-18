@@ -16,7 +16,7 @@ object CacheServer extends App with AppRoutes {
 
   lazy val routes: Route = appRoutes
 
-  Http().bindAndHandle(routes, "localhost", 8080)
+  Http().bindAndHandle(routes, "0.0.0.0", 8080)
 
   println(s"Server online at http://localhost:8080/")
 

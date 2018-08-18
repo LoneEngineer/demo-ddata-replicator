@@ -1,3 +1,5 @@
+import com.typesafe.sbt.packager.docker._
+
 lazy val akkaHttpVersion = "10.1.3"
 lazy val akkaVersion    = "2.5.14"
 
@@ -28,5 +30,10 @@ lazy val root = (project in file(".")).
       "com.typesafe.akka" %% "akka-testkit"         % akkaVersion     % Test,
       "com.typesafe.akka" %% "akka-stream-testkit"  % akkaVersion     % Test,
       "org.scalatest"     %% "scalatest"            % "3.0.5"         % Test
+    ),
+    javaOptions in Universal ++= Seq(
+      "-Dconfig.resource=akka.conf",
+      "-Dhttp.port=8080",
+      "-J-Xmx128m"
     )
-  ).enablePlugins(JavaServerAppPackaging, DockerPlugin)
+  ).enablePlugins(JavaServerAppPackaging, AshScriptPlugin, DockerPlugin)
