@@ -5,12 +5,17 @@ import scala.concurrent.duration.Duration
 import akka.actor.{ActorRef, ActorSystem}
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Route
+import akka.management.AkkaManagement
+import akka.management.cluster.bootstrap.ClusterBootstrap
 import akka.stream.ActorMaterializer
 
 object CacheServer extends App with AppRoutes {
 
   implicit val system: ActorSystem = ActorSystem("ReplicatedAkkaHttpServer")
   implicit val materializer: ActorMaterializer = ActorMaterializer()
+
+  AkkaManagement(system).start()
+  ClusterBootstrap(system).start()
 
   val replica: ActorRef = system.actorOf(ReplicatedCache.props, "Cache")
 
