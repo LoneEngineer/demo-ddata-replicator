@@ -15,7 +15,7 @@ rules:
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: akka-simple-cluster
+  name: replicator-account-role
 subjects:
 - kind: ServiceAccount
   name:  replicator-account
@@ -54,7 +54,7 @@ spec:
                 apiVersion: v1
                 fieldPath: status.podIP
         imagePullPolicy: Never
-        image: replicator:1.3
+        image: replicator:1.6
         readinessProbe:
           tcpSocket:
             port: 8080

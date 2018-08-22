@@ -11,7 +11,7 @@ import akka.stream.ActorMaterializer
 
 object CacheServer extends App with AppRoutes {
 
-  implicit val system: ActorSystem = ActorSystem("ReplicatedAkkaHttpServer")
+  implicit val system: ActorSystem = ActorSystem("replicator")
   implicit val materializer: ActorMaterializer = ActorMaterializer()
 
   AkkaManagement(system).start()
