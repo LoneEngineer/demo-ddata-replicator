@@ -13,10 +13,11 @@ lazy val root = (project in file(".")).
       scalaVersion    := "2.12.6"
     )),
     name := "replicator",
-    version := "1.6",
+    version := "1.7",
     maintainer := "sergei@digital-magic.io",
     dockerBaseImage := "frolvlad/alpine-oraclejdk8",
     dockerExposedPorts := Seq(8080, 8081, 2552),
+    daemonUser in Docker := "root",
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-http"            % akkaHttpVersion,
       "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,

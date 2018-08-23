@@ -54,7 +54,10 @@ spec:
                 apiVersion: v1
                 fieldPath: status.podIP
         imagePullPolicy: Never
-        image: replicator:1.6
+        image: replicator:1.7
+        securityContext:
+          capabilities:
+            add: [ "NET_ADMIN" ]
         readinessProbe:
           tcpSocket:
             port: 8080
